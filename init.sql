@@ -3,11 +3,11 @@ CREATE DATABASE IF NOT EXISTS BookDB;
 USE BookDB;
 
 -- Dropping exisiting tables to start from scratch
+DROP TABLE IF EXISTS Book_Creator;
 DROP TABLE IF EXISTS Creator;
-DROP TABLE IF EXISTS Book;
 DROP TABLE IF EXISTS Book_Genre;
 DROP TABLE IF EXISTS ReadCount;
-
+DROP TABLE IF EXISTS Book;
 DROP TABLE IF EXISTS Language;
 DROP TABLE IF EXISTS Genre;
 DROP TABLE IF EXISTS Role;
@@ -54,22 +54,17 @@ CREATE TABLE IF NOT EXISTS Publisher (
     Country NVARCHAR(50)
 );
 
--- Tables with foreign keys
 CREATE TABLE IF NOT EXISTS  Creator (
     ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     FirstName NVARCHAR(50) NOT NULL,
     FamilyNamePreposition NVARCHAR(50),  -- Tussenvoegsel
     LastName NVARCHAR(50) NOT NULL,
-    RoleID int UNSIGNED NOT NULL,
     Nationality NVARCHAR(50),
     Birthday DATE,
-    Pseudonym BOOLEAN,
-    CONSTRAINT `fk_role_creator`
-        FOREIGN KEY (RoleID) REFERENCES Role (id)
-        ON DELETE RESTRICT
-        ON UPDATE RESTRICT
+    Pseudonym BOOLEAN
 );
 
+-- Tables with foreign keys
 CREATE TABLE IF NOT EXISTS Book (
     ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ISBN NVARCHAR(13) NOT NULL,
@@ -134,6 +129,7 @@ CREATE TABLE IF NOT EXISTS Book_Creator (
     ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     BookID INT UNSIGNED,
     CreatorID INT UNSIGNED,
+    RoleID int UNSIGNED NOT NULL,
     CONSTRAINT `fk_book_to_creator`
         FOREIGN KEY (BookID) REFERENCES Book (id)
         ON DELETE CASCADE
@@ -141,5 +137,9 @@ CREATE TABLE IF NOT EXISTS Book_Creator (
     CONSTRAINT `fk_creator_to_book`
         FOREIGN KEY (CreatorID) REFERENCES Creator (id)
         ON DELETE CASCADE
+        ON UPDATE restrict,
+    CONSTRAINT `fk_role_creator`
+        FOREIGN KEY (RoleID) REFERENCES Role (id)
+        ON DELETE RESTRICT
         ON UPDATE RESTRICT
 );
