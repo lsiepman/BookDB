@@ -61,7 +61,10 @@ CREATE TABLE IF NOT EXISTS  Creator (
     LastName NVARCHAR(50) NOT NULL,
     Nationality NVARCHAR(50),
     Birthday DATE,
-    Pseudonym BOOLEAN
+    Pseudonym BOOLEAN,
+    RealFirstName NVARCHAR(50),
+    RealFamilyNamePreposition NVARCHAR(50),
+    RealLastName NVARCHAR(50)
 );
 
 -- Tables with foreign keys
