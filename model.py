@@ -1,4 +1,5 @@
-from sqlalchemy import create_engine, Column, VARCHAR, INTEGER
+from sqlalchemy import create_engine, Column, VARCHAR, INTEGER, DATE
+from sqlalchemy.dialects.mysql import TINYINT
 from sqlalchemy.orm import declarative_base
 from app.general_functions import generate_db_string
 
@@ -11,17 +12,103 @@ engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 
 
-# Define the ORM model
+# Define the ORM model, same order as the init.sql
 class User(Base):
-    """Class for the user table from BookDB"""
+    """Class for the User table from BookDB"""
 
-    __tablename__ = "user"
+    __tablename__ = "User"
 
     ID = Column(INTEGER, primary_key=True)
     Username = Column(VARCHAR)
     FirstName = Column(VARCHAR)
     FamilyNamePreposition = Column(VARCHAR)
     LastName = Column(VARCHAR)
+
+
+class BookType(Base):
+    """Class for the BookType table from BookDB"""
+
+    __tablename__ = "Booktype"
+
+    ID = Column(INTEGER, primary_key=True)
+    Type = Column(VARCHAR)
+    Description = Column(VARCHAR)
+
+
+class Language(Base):
+    """Class for the Language table from BookDB"""
+
+    __tablename__ = "Language"
+
+    ID = Column(INTEGER, primary_key=True)
+    Language = Column(VARCHAR)
+
+
+class Genre(Base):
+    """Class for the Genre table from BookDB"""
+
+    __tablename__ = "Genre"
+
+    ID = Column(INTEGER, primary_key=True)
+    Genre = Column(VARCHAR)
+    Description = Column(VARCHAR)
+
+
+class Role(Base):
+    """Class for the Role table from BookDB"""
+
+    __tablename__ = "Role"
+
+    ID = Column(INTEGER, primary_key=True)
+    Role = Column(VARCHAR)
+    Description = Column(VARCHAR)
+
+
+class Rating(Base):
+    """Class for the Rating table from BookDB"""
+
+    __tablename__ = "Rating"
+
+    ID = Column(INTEGER, primary_key=True)
+    Rating = Column(INTEGER)
+    Description = Column(VARCHAR)
+
+
+class Shelf(Base):
+    """Class for the Shelf table from BookDB"""
+
+    __tablename__ = "Shelf"
+
+    ID = Column(INTEGER, primary_key=True)
+    Shelf = Column(VARCHAR)
+    Description = Column(VARCHAR)
+
+
+class Publisher(Base):
+    """Class for the Publisher table from BookDB"""
+
+    __tablename__ = "Publisher"
+
+    ID = Column(INTEGER, primary_key=True)
+    Name = Column(VARCHAR)
+    Country = Column(VARCHAR)
+
+
+class Creator(Base):
+    """Class for the Creator table from BookDB"""
+
+    __tablename__ = "Creator"
+
+    ID = Column(INTEGER, primary_key=True)
+    FirstName = Column(VARCHAR)
+    FamilyNamePreposition = Column(VARCHAR)
+    LastName = Column(VARCHAR)
+    Nationality = Column(VARCHAR)
+    Birthday = Column(DATE)
+    Pseudonym = Column(TINYINT)
+    RealFirstName = Column(VARCHAR)
+    RealFamilyNamePreposition = Column(VARCHAR)
+    RealLastName = Column(VARCHAR)
 
 
 # Create the table in the database

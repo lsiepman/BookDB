@@ -7,7 +7,17 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from model import User
+from model import (
+    User,
+    BookType,
+    Language,
+    Genre,
+    Role,
+    Rating,
+    Shelf,
+    Publisher,
+    Creator,
+)
 from app.general_functions import generate_db_string
 
 # Replace with your actual MariaDB connection string
@@ -27,13 +37,15 @@ class TestDatabaseSchema(unittest.TestCase):
         cls.connection.close()
         cls.engine.dispose()
 
-    def test_user_table_matches_model(self):
+    def assert_table_matches(self, table_class, table_name: str):
         # Reflect the actual table from the database
         reflected_metadata = MetaData()
-        reflected_table = Table("user", reflected_metadata, autoload_with=self.engine)
+        reflected_table = Table(
+            table_name, reflected_metadata, autoload_with=self.engine
+        )
 
         # Get the ORM table from model
-        model_table = User.__table__
+        model_table = table_class.__table__
 
         # Compare column names
         model_columns = {col.name: col for col in model_table.columns}
@@ -55,6 +67,33 @@ class TestDatabaseSchema(unittest.TestCase):
                 reflected_type,
                 msg=f"Type mismatch for column '{name}': {model_type} != {reflected_type}",
             )
+
+    def test_user_table_matches_model(self):
+        self.assert_table_matches(User, "User")
+
+    def test_booktype_table_matches_model(self):
+        self.assert_table_matches(BookType, "BookType")
+
+    def test_language_table_matches_model(self):
+        self.assert_table_matches(Language, "Language")
+
+    def test_genre_table_matches_model(self):
+        self.assert_table_matches(Genre, "Genre")
+
+    def test_role_table_matches_model(self):
+        self.assert_table_matches(Role, "Role")
+
+    def test_rating_table_matches_model(self):
+        self.assert_table_matches(Rating, "Rating")
+
+    def test_shelf_table_matches_model(self):
+        self.assert_table_matches(Shelf, "Shelf")
+
+    def test_publisher_table_matches_model(self):
+        self.assert_table_matches(Publisher, "Publisher")
+
+    def test_creator_table_matches_model(self):
+        self.assert_table_matches(Creator, "Creator")
 
 
 if __name__ == "__main__":
