@@ -17,6 +17,8 @@ from model import (
     Shelf,
     Publisher,
     Creator,
+    Book,
+    Book_Genre,
 )
 from app.general_functions import generate_db_string
 
@@ -94,6 +96,12 @@ class TestDatabaseSchema(unittest.TestCase):
 
     def test_creator_table_matches_model(self):
         self.assert_table_matches(Creator, "Creator")
+
+    def test_book_table_matches_model(self):
+        self.assert_table_matches(Book, "Book")
+
+    def test_book_genre_table_matches_model(self):
+        self.assert_table_matches(Book_Genre, "Book_Genre")
 
 
 if __name__ == "__main__":
