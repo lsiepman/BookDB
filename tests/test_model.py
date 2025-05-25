@@ -8,6 +8,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from model import (
+    Series,
     User,
     BookType,
     Language,
@@ -19,6 +20,10 @@ from model import (
     Creator,
     Book,
     Book_Genre,
+    Book_Creator,
+    Book_Series,
+    Book_User,
+    ReadCount,
 )
 from app.general_functions import generate_db_string
 
@@ -70,6 +75,9 @@ class TestDatabaseSchema(unittest.TestCase):
                 msg=f"Type mismatch for column '{name}': {model_type} != {reflected_type}",
             )
 
+    def test_series_table_matches_model(self):
+        self.assert_table_matches(Series, "Series")
+
     def test_user_table_matches_model(self):
         self.assert_table_matches(User, "User")
 
@@ -100,8 +108,20 @@ class TestDatabaseSchema(unittest.TestCase):
     def test_book_table_matches_model(self):
         self.assert_table_matches(Book, "Book")
 
+    def test_readcount_table_matches_model(self):
+        self.assert_table_matches(ReadCount, "ReadCount")
+
     def test_book_genre_table_matches_model(self):
         self.assert_table_matches(Book_Genre, "Book_Genre")
+
+    def test_book_creator_table_matches_model(self):
+        self.assert_table_matches(Book_Creator, "Book_Creator")
+
+    def test_book_series_table_matches_model(self):
+        self.assert_table_matches(Book_Series, "Book_Series")
+
+    def test_book_user_table_matches_model(self):
+        self.assert_table_matches(Book_User, "Book_User")
 
 
 if __name__ == "__main__":

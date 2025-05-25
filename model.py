@@ -164,5 +164,37 @@ class Book_Series(Base):
     Entry = Column(INTEGER)
 
 
+class ReadCount(Base):
+
+    __tablename__ = "ReadCount"
+
+    ID = Column(INTEGER, primary_key=True)
+    BookID = Column(INTEGER, ForeignKey("Book.ID"))
+    UserID = Column(INTEGER, ForeignKey("User.ID"))
+    Cnt = Column(INTEGER)
+
+
+class Book_Creator(Base):
+
+    __tablename__ = "Book_Creator"
+
+    ID = Column(INTEGER, primary_key=True)
+    BookID = Column(INTEGER, ForeignKey("Book.ID"))
+    CreatorID = Column(INTEGER, ForeignKey("Creator.ID"))
+    RoleID = Column(INTEGER, ForeignKey("Role.ID"))
+
+
+class Book_User(Base):
+
+    __tablename__ = "Book_User"
+
+    ID = Column(INTEGER, primary_key=True)
+    UserID = Column(INTEGER, ForeignKey("User.ID"))
+    BookID = Column(INTEGER, ForeignKey("Book.ID"))
+    RatingID = Column(INTEGER, ForeignKey("Rating.ID"))
+    CurrentShelf = Column(INTEGER, ForeignKey("Shelf.ID"))
+    Owned = Column(TINYINT)
+
+
 # Create the table in the database
 Base.metadata.create_all(engine)
