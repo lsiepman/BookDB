@@ -16,6 +16,16 @@ Base = declarative_base()
 
 
 # tables without foreign keys
+class Series(Base):
+    """Class for the Series table ferom BookDB"""
+
+    __tablename__ = "Series"
+
+    ID = Column(INTEGER, primary_key=True)
+    Name = Column(VARCHAR)
+    Description = Column(LONGTEXT)
+
+
 class User(Base):
     """Class for the User table from BookDB"""
 
@@ -142,6 +152,16 @@ class Book_Genre(Base):
     ID = Column(INTEGER, primary_key=True)
     BookID = Column(INTEGER, ForeignKey("Book.ID"))
     GenreID = Column(INTEGER, ForeignKey("Genre.ID"))
+
+
+class Book_Series(Base):
+
+    __tablename__ = "Book_Series"
+
+    ID = Column(INTEGER, primary_key=True)
+    BookID = Column(INTEGER, ForeignKey("Book.ID"))
+    SeriesID = Column(INTEGER, ForeignKey("Series.ID"))
+    Entry = Column(INTEGER)
 
 
 # Create the table in the database
