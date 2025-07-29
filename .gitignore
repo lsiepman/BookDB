@@ -176,3 +176,8 @@ cython_debug/
 
 # Database credentials
 credentials.json
+
+
+# bootstrap extra's
+*.zip
+bootstrap-4.5.3-dist/*
