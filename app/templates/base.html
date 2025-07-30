@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <nav class="navbar navbar-dark bg-primary" role="navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div>
+            <a class="navbar-brand" href="#">Book DB</a>
+        </div>
+    </nav>
     <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
@@ -15,6 +25,7 @@
 </head>
 
 <body>
+
     {% block content %}{% endblock %}
     {% block scripts %}{% endblock %}
 </body>
