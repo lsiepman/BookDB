@@ -5,26 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <nav class="navbar navbar-dark bg-primary" role="navigation">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div>
-            <a class="navbar-brand" href="#">Book DB</a>
-        </div>
-    </nav>
-    <title>{% block title %}{% endblock %}</title>
-
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- jquery -->
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery-3.3.1.min.js') }}"></script>
+    <!-- Bootstrap javascript  -->
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/bootstrap.bundle.min.js') }}"></script>
+
+    <title>{% block title %}{% endblock %}</title>
     {% block header %}{% endblock %}
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-text" href="#">
+                        <img src="{{ url_for('static', filename='icons/house-fill.svg') }}" width="32" height="32"> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-text" href="#" id="dropdownMenuButton" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ url_for('static', filename='icons/pen.svg') }}" width="32" height="32"> Authors
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">Link</a></li>
+                        <li><a class="dropdown-item" href="#">Another link</a></li>
+                        <li><a class="dropdown-item" href="#">A third link</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-text" href="#">Link 3</a>
+                </li>
+            </ul>
+        </div>
+        <a class="navbar-brand nav-text" href="#">BookDB</a>
+    </nav>
+
+
 
     {% block content %}{% endblock %}
     {% block scripts %}{% endblock %}
