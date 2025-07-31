@@ -180,4 +180,4 @@ credentials.json
 
 # bootstrap extra's
 *.zip
-bootstrap-4.5.3-dist/*
+bootstrap-5.3.7-dist/*
