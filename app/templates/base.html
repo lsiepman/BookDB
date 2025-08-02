@@ -14,7 +14,6 @@
     <!-- Bootstrap javascript  -->
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/bootstrap.bundle.min.js') }}"></script>
 
-    <title>{% block title %}{% endblock %}</title>
     {% block header %}{% endblock %}
 </head>
 
@@ -23,7 +22,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link nav-text" href="#">
+                    <a class="nav-link nav-text" href="/">
                         <img src="{{ url_for('static', filename='icons/house-fill.svg') }}" width="32" height="32"> Home
                     </a>
                 </li>
@@ -33,13 +32,13 @@
                         <img src="{{ url_for('static', filename='icons/pen.svg') }}" width="32" height="32"> Authors
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Link</a></li>
-                        <li><a class="dropdown-item" href="#">Another link</a></li>
-                        <li><a class="dropdown-item" href="#">A third link</a></li>
+                        <li><a class="dropdown-item" href="/view_authors">Authors</a></li>
+                        <li><a class="dropdown-item" href="/add_author">Add Author</a></li>
+                        <li><a class="dropdown-item" href="#">Edit Author</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-text" href="#">Link 3</a>
+                    <a class="nav-link nav-text" href="#">Books</a>
                 </li>
             </ul>
         </div>
@@ -48,7 +47,7 @@
 
 
 
-    {% block content %}{% endblock %}
+    {% block body %}{% endblock %}
     {% block scripts %}{% endblock %}
 </body>
 

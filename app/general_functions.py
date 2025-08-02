@@ -14,3 +14,9 @@ def generate_db_string() -> str:
         f"@{db_creds['host']}:{db_creds['port']}/"
         f"{db_creds['default_database']}"
     )
+
+
+def fetch_secret_key() -> str:
+    # load credentials
+    with open("credentials.json", "r", encoding="utf-8") as f:
+        return json.load(f)["secret_key"]
