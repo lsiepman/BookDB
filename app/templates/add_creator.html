@@ -7,8 +7,10 @@
 
 {% block body %}
 
-<div>
-    <h1>Add Creator</h1>
+<div class="container">
+    <div class="row justify-content-md-center mb-3">
+        <h1>Add Creator</h1>
+    </div>
     <div>
         <form method="post" aurocomplete="off" action="/" enctype="multipart/form-data">
             {{ form.csrf_token }}
@@ -19,22 +21,34 @@
                         {{ form.first_name(class_="form-control") }}
                     </div>
                 </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                <div class="col-1">
+                    <div class="form-group">
+                        {{ form.family_name_prep.label }}
+                        {{ form.family_name_prep(class_="form-control") }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        {{ form.last_name.label }}
+                        {{ form.last_name(class_="form-control") }}
+                    </div>
                 </div>
             </div>
-
-
             <div class="row">
-                <div class="col-3"></div>
+                <div class="col-2 mt-3">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary upload" id="upload-creator">Upload photo</button>
+                    </div>
+                </div>
             </div>
-            <p> </p>
-            <p>{{ form.family_name_prep.label }} {{ form.family_name_prep() }}</p>
-            <p>{{ form.last_name.label }} {{ form.last_name() }}</p>
-            <p><input type="submit" value="Submit"></p>
+            <div class="row">
+                <div class="col-2 mt-3">
+                    {{ form.submit(class_="btn btn-primary submit")}}
+                    <button type="button" class="btn btn-secondary cancel" id="cancel-creator">Cancel</button>
+                </div>
+            </div>
         </form>
     </div>
-
 </div>
 
 

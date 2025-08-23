@@ -12,3 +12,17 @@
 title {
     display: none;
 }
+
+.btn-primary {
+    background-color: rgb(66, 179, 245);
+    color: black;
+    border: none;
+}
+
+.cancel {
+    border: none;
+}
+
+.form-group {
+    font-weight: bold;
+}
