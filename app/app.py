@@ -1,14 +1,10 @@
 import json
 from flask import Flask, render_template
 from .general_functions import fetch_secret_key
-from .authors.routes import authors
+from . import create_app
 
-
-app = Flask(__name__)
+app = create_app()
 app.config["SECRET_KEY"] = fetch_secret_key()
-
-# register all blueprints
-app.register_blueprint(authors)
 
 
 @app.route("/favicon.ico")

@@ -1,9 +1,6 @@
-from flask import Blueprint, render_template
+from flask import render_template
 from .functions import AuthorForm
-
-authors = Blueprint(
-    "authors", __name__, template_folder="templates", static_folder="static"
-)
+from . import authors
 
 
 @authors.route("/view_authors")
