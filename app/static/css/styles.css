@@ -26,3 +26,8 @@ title {
 .form-group {
     font-weight: bold;
 }
+
+.form-control {
+    color: black;
+    border-color: black;
+}
